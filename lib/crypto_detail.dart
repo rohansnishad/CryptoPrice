@@ -511,7 +511,6 @@
 
 
 
-
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'dart:convert';
@@ -685,7 +684,7 @@ class _CryptoDetailState extends State<CryptoDetail> {
             child: _isLoading
                 ? Center(child: CircularProgressIndicator())
                 : _hasError
-                ? Center(child: Text('Failed to load data'))
+                ? Center(child: Text('Failed to load data', style: Theme.of(context).textTheme.bodyText1))
                 : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: SizedBox(
@@ -699,7 +698,7 @@ class _CryptoDetailState extends State<CryptoDetail> {
                           return touchedSpots.map((touchedSpot) {
                             return LineTooltipItem(
                               '\$${touchedSpot.y.toStringAsFixed(2)}',
-                              const TextStyle(color: Colors.white),
+                              TextStyle(color: Colors.white),
                             );
                           }).toList();
                         },
@@ -710,13 +709,13 @@ class _CryptoDetailState extends State<CryptoDetail> {
                       drawVerticalLine: true,
                       getDrawingHorizontalLine: (value) {
                         return FlLine(
-                          color: const Color(0xff0a0101),
+                          color: Theme.of(context).dividerColor,
                           strokeWidth: 1,
                         );
                       },
                       getDrawingVerticalLine: (value) {
                         return FlLine(
-                          color: const Color(0xff0a0101),
+                          color: Theme.of(context).dividerColor,
                           strokeWidth: 1,
                         );
                       },
@@ -728,8 +727,11 @@ class _CryptoDetailState extends State<CryptoDetail> {
                       bottomTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 22,
-                        getTextStyles: (context, value) =>
-                        const TextStyle(color: Color(0xff0a0101), fontWeight: FontWeight.bold, fontSize: 12),
+                        getTextStyles: (context, value) => TextStyle(
+                          color: Theme.of(context).textTheme.bodyText1?.color,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
                         getTitles: (value) {
                           switch (value.toInt()) {
                             case 0:
@@ -753,8 +755,11 @@ class _CryptoDetailState extends State<CryptoDetail> {
                       ),
                       leftTitles: SideTitles(
                         showTitles: true,
-                        getTextStyles: (context, value) =>
-                        const TextStyle(color: Color(0xff0a0101), fontWeight: FontWeight.bold, fontSize: 12),
+                        getTextStyles: (context, value) => TextStyle(
+                          color: Theme.of(context).textTheme.bodyText1?.color,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
                         getTitles: (value) {
                           return '\$${value.toInt()}';
                         },
@@ -764,7 +769,7 @@ class _CryptoDetailState extends State<CryptoDetail> {
                     ),
                     borderData: FlBorderData(
                       show: true,
-                      border: Border.all(color: const Color(0xff0a0101), width: 1),
+                      border: Border.all(color: Theme.of(context).dividerColor, width: 1),
                     ),
                     minX: 0,
                     maxX: _priceSpots.length.toDouble() - 1,
@@ -780,7 +785,7 @@ class _CryptoDetailState extends State<CryptoDetail> {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Current Price: \$${_currentPriceUSD.toStringAsFixed(2)} / ₹${_currentPriceINR.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyText1?.color),
             ),
           ),
           Padding(
@@ -805,3 +810,6 @@ class _CryptoDetailState extends State<CryptoDetail> {
     );
   }
 }
+
+
+
