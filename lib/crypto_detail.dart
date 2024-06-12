@@ -671,8 +671,6 @@ class _CryptoDetailState extends State<CryptoDetail> {
 
   @override
   Widget build(BuildContext context) {
-    double initialPrice = _priceSpots.isNotEmpty ? _priceSpots.first.y : 0;
-    double finalPrice = _priceSpots.isNotEmpty ? _priceSpots.last.y : 0;
 
     return Scaffold(
       appBar: AppBar(
@@ -684,7 +682,7 @@ class _CryptoDetailState extends State<CryptoDetail> {
             child: _isLoading
                 ? Center(child: CircularProgressIndicator())
                 : _hasError
-                ? Center(child: Text('Failed to load data', style: Theme.of(context).textTheme.bodyText1))
+                ? Center(child: Text('Failed to load data', style: Theme.of(context).textTheme.bodyLarge))
                 : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: SizedBox(
@@ -728,7 +726,7 @@ class _CryptoDetailState extends State<CryptoDetail> {
                         showTitles: true,
                         reservedSize: 22,
                         getTextStyles: (context, value) => TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1?.color,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
                         ),
@@ -756,7 +754,7 @@ class _CryptoDetailState extends State<CryptoDetail> {
                       leftTitles: SideTitles(
                         showTitles: true,
                         getTextStyles: (context, value) => TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1?.color,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
                         ),
@@ -785,7 +783,7 @@ class _CryptoDetailState extends State<CryptoDetail> {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Current Price: \$${_currentPriceUSD.toStringAsFixed(2)} / ₹${_currentPriceINR.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyText1?.color),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
             ),
           ),
           Padding(
